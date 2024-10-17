@@ -4,9 +4,10 @@ import { selectNameFilter } from "../../redux/filters/selectors";
 import { changeFilter } from "../../redux/filters/slice";
 import { fetchRecipesForTheNameThunk } from "../../redux/recipes/operations";
 import { debounce } from "lodash";
+import { AppDispatch } from "../../redux/store";
 
 const SearchBox: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   const nameFilter = useSelector(selectNameFilter);
 
   const [searchValue, setSearchValue] = useState<string>(nameFilter);
