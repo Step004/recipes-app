@@ -63,14 +63,3 @@ export const listAllCategories = async (): Promise<any[]> => {
   return data.categories;
 };
 
-// Функція для отримання всіх інгредієнтів
-export const listAllIngredients = async (): Promise<any[]> => {
-  const response = await fetch(
-    "https://www.themealdb.com/api/json/v1/1/list.php?i=list"
-  );
-  if (!response.ok) {
-    throw new Error("Failed to fetch ingredients");
-  }
-  const data = await response.json();
-  return data.ingredients;
-};

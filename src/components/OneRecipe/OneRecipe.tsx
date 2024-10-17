@@ -2,19 +2,35 @@ import { useNavigate } from "react-router-dom";
 import { Recipe } from "../../types/Recipe";
 import css from "./OneRecipe.module.css";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { addFavorite, removeFavorite } from "../../redux/favorites/slice";
+import { useSelector } from "react-redux";
+import { selectFavorite } from "../../redux/favorites/selectors";
 
 interface OneRecipeProps {
   recipe: Recipe;
 }
 
 const OneRecipe: React.FC<OneRecipeProps> = ({ recipe }) => {
-  const [isFavorite, setIsFavorite] = useState(false);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const favorites = useSelector(selectFavorite);
+
+  // Перевіряємо, чи є цей рецепт в списку улюблених
+  const isFavorite = favorites.some(
+    (fav: Recipe) => fav.idMeal === recipe.idMeal
+  );
+
   const handleClick = () => {
     navigate(`/recipe/${recipe.idMeal}`); // Перейдіть на сторінку рецепту
   };
   const handleClickChoose = () => {
-    setIsFavorite(!isFavorite);
+    if (isFavorite) {
+      dispatch(removeFavorite(recipe.idMeal));
+    } else {
+      dispatch(addFavorite(recipe));
+    }
   };
 
   return (

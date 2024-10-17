@@ -1,5 +1,5 @@
 import { createSelector } from "@reduxjs/toolkit";
-import { selectNameFilter } from "../filters/selectors";
+import { selectNameFilter, selectCategoryFilter } from "../filters/selectors";
 import { RootState } from "../store"; // Імпортуємо тип RootState
 import { Recipe } from "../../types/Recipe"; // Імпортуємо тип Recipe, якщо він у вас визначений
 
@@ -8,16 +8,27 @@ export const selectRecipes = (state: RootState): Recipe[] => state.recipe.items;
 
 // Типізуємо селектор selectFilteredContacts
 export const selectFilteredRecipes = createSelector(
-  [selectRecipes, selectNameFilter],
-  (recipes: Recipe[], filter: string) => {
-    if (!filter) {
-      return recipes;
+  [selectRecipes, selectNameFilter, selectCategoryFilter],
+  (recipes: Recipe[], nameFilter: string, categoryFilter: string) => {
+    if (!recipes) {
+      return [];
     }
-     if (!recipes) {
-       return [];
-     }
-    return recipes.filter((recipe) =>
-      recipe.strMeal.toLowerCase().includes(filter.toLowerCase())
-    );
+
+    // Фільтруємо за категорією
+    let filteredRecipes = recipes;
+    if (categoryFilter) {
+      filteredRecipes = filteredRecipes.filter(
+        (recipe) => recipe.strCategory === categoryFilter
+      );
+    }
+
+    // Фільтруємо за ім'ям
+    if (nameFilter) {
+      filteredRecipes = filteredRecipes.filter((recipe) =>
+        recipe.strMeal.toLowerCase().includes(nameFilter.toLowerCase())
+      );
+    }
+
+    return filteredRecipes;
   }
 );

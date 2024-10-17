@@ -10,10 +10,13 @@ import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { selectFilteredRecipes } from "../../redux/recipes/selectors";
 
-export default function RecipesList() {
+interface RecipesListProps {
+  recipes: Recipe[]; // Типізуємо пропс recipes як масив об'єктів типу Recipe
+}
+
+export default function RecipesList({ recipes = [] }: RecipesListProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
-  const recipes = useSelector(selectFilteredRecipes) || [];
   const totalCount = recipes.length;
   const dispatch = useDispatch();
   useEffect(() => {

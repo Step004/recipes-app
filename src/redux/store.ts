@@ -1,6 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import filterReducer from "./filters/slice";
 import recipeReducer from "./recipes/slice";
+import favoriteReducer from "./favorites/slice";
 import {
   persistStore,
   FLUSH,
@@ -15,6 +16,7 @@ import { combineReducers } from "redux";
 const rootReducer = combineReducers({
   recipe: recipeReducer,
   filter: filterReducer,
+  favorite: favoriteReducer,
 });
 
 export type RootState = ReturnType<typeof rootReducer>;
