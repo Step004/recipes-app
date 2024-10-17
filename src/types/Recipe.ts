@@ -54,4 +54,6 @@ export interface Recipe {
   strMeasure18: string;
   strMeasure19: string;
   strMeasure20: string;
+  [key: `strIngredient${number}`]: string | null;
+  [key: `strMeasure${number}`]: string | null;
 }

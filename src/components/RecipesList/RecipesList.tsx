@@ -6,6 +6,7 @@ import Pagination from "../Pagination/Pagination";
 import { useDispatch } from "react-redux";
 import { fetchRecipesThunk } from "../../redux/recipes/operations";
 import { useEffect } from "react";
+import { AppDispatch } from "../../redux/store";
 
 interface RecipesListProps {
   recipes: Recipe[]; 
@@ -15,7 +16,7 @@ export default function RecipesList({ recipes = [] }: RecipesListProps) {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
   const totalCount = recipes.length;
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppDispatch>();
   useEffect(() => {
     dispatch(fetchRecipesThunk());
   }, [dispatch]);
