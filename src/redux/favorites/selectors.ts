@@ -1,4 +1,5 @@
-import { RootState } from "@reduxjs/toolkit/query";
+import { RootState } from "../store";
 import { Recipe } from "../../types/Recipe";
 
-export const selectFavorite = (state: RootState): Recipe[] => state.favorite.favorites.items;
+export const selectFavorite = (state: RootState): Recipe[] =>
+  state.favorite.favorites.items;
