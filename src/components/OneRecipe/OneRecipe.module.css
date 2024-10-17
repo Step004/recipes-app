@@ -1,0 +1,56 @@
+.card {
+    padding: 15px;
+    border: 1px solid black;
+    width: 100%;
+    max-width: 340px;
+}
+
+.buttons{
+    display: flex;
+    justify-content: space-between;
+}
+
+.instruction {
+    font-size: 18px;
+    font-weight: 400;
+    padding: 10px;
+    background-color: rgba(128, 128, 128, 0.16);
+    border-radius: 30px;
+}
+
+.img {
+    width: 100%;
+}
+
+.buttonReadMore {
+    padding: 10px 20px;
+    border: none;
+    background-color: var(--main-color);
+    color: black;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.buttonReadMore:hover {
+    background-color: var(--hover-color);
+    /* Темніший відтінок при наведенні */
+    transform: scale(1.05);
+    /* Легке збільшення */
+}
+
+.buttonReadMore:focus {
+    outline: none;
+    /* Прибираємо обводку при фокусі */
+}
+.descriptionMeal{
+    display: flex;
+    gap: 30px;
+    margin-bottom: 10px;
+}
+
+.strMeal{
+    margin-bottom: 10px;
+}
