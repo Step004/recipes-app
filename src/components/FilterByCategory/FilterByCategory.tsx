@@ -4,7 +4,6 @@ import css from "./FilterByCategory.module.css";
 import { useDispatch } from "react-redux";
 import { changeCategory } from "../../redux/filters/slice";
 
-// Створюємо тип для категорій
 interface Category {
   strCategory: string;
 }
@@ -12,9 +11,8 @@ interface Category {
 const FilterByCategory: React.FC = () => {
   const [categories, setCategories] = useState<Category[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>("");
-  const dispatch = useDispatch(); // Додаємо dispatch
+  const dispatch = useDispatch(); 
 
-  // Завантаження категорій при монтуванні компонента
   useEffect(() => {
     const fetchCategories = async () => {
       try {
@@ -27,7 +25,6 @@ const FilterByCategory: React.FC = () => {
     fetchCategories();
   }, []);
 
-  // Обробник зміни вибору категорії
   const handleCategoryChange = (
     event: React.ChangeEvent<HTMLSelectElement>
   ) => {

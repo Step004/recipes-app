@@ -1,17 +1,14 @@
 import { useState } from "react";
-import { useRecipes } from "../../services/hooks/useRecipes";
 import { Recipe } from "../../types/Recipe";
 import OneRecipe from "../OneRecipe/OneRecipe";
 import css from "./RecipesList.module.css";
 import Pagination from "../Pagination/Pagination";
 import { useDispatch } from "react-redux";
 import { fetchRecipesThunk } from "../../redux/recipes/operations";
-import { useSelector } from "react-redux";
 import { useEffect } from "react";
-import { selectFilteredRecipes } from "../../redux/recipes/selectors";
 
 interface RecipesListProps {
-  recipes: Recipe[]; // Типізуємо пропс recipes як масив об'єктів типу Recipe
+  recipes: Recipe[]; 
 }
 
 export default function RecipesList({ recipes = [] }: RecipesListProps) {
@@ -37,9 +34,9 @@ export default function RecipesList({ recipes = [] }: RecipesListProps) {
         ))}
       </ul>
       <Pagination
-        totalItems={totalCount} // Загальна кількість елементів
+        totalItems={totalCount} 
         itemsPerPage={itemsPerPage}
-        onPageChange={setCurrentPage} // Функція для зміни сторінки
+        onPageChange={setCurrentPage}
       />
     </div>
   );

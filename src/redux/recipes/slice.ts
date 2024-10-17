@@ -25,23 +25,22 @@ const recipesSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchRecipesThunk.pending, (state) => {
-        state.loading = true; // Зміна на true при очікуванні
-        state.error = null; // Обнулити помилку
+        state.loading = true;
+        state.error = null;
       })
       .addCase(
         fetchRecipesThunk.fulfilled,
         (state, action: PayloadAction<Recipe[]>) => {
           state.items = action.payload;
-          state.loading = false; // Завантаження закінчено
+          state.loading = false;
         }
       )
       .addCase(fetchRecipesThunk.rejected, (state, action) => {
-        state.loading = false; // Завантаження закінчено
-        state.error = action.payload || "Something went wrong"; // Встановити повідомлення про помилку
+        state.loading = false;
+        state.error = action.payload || "Something went wrong";
       });
   },
 });
 
-// Експорт екшенів і редюсера
 export const { setRecipes } = recipesSlice.actions;
 export default recipesSlice.reducer;

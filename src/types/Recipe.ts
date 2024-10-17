@@ -1,5 +1,3 @@
-// src/types/Recipe.ts
-
 export interface Recipe {
   idMeal: string;
   strMeal: string;
@@ -15,7 +13,6 @@ export interface Recipe {
   strCreativeCommonsConfirmed: string | null;
   dateModified: string | null;
 
-  // Динамічні поля для інгредієнтів і мірних одиниць
   strIngredient1: string;
   strIngredient2: string;
   strIngredient3: string;

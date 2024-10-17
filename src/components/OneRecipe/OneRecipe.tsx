@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Recipe } from "../../types/Recipe";
 import css from "./OneRecipe.module.css";
-import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addFavorite, removeFavorite } from "../../redux/favorites/slice";
 import { useSelector } from "react-redux";
@@ -17,7 +16,6 @@ const OneRecipe: React.FC<OneRecipeProps> = ({ recipe }) => {
 
   const favorites = useSelector(selectFavorite);
 
-  // Перевіряємо, чи є цей рецепт в списку улюблених
   const isFavorite = favorites.some(
     (fav: Recipe) => fav.idMeal === recipe.idMeal
   );

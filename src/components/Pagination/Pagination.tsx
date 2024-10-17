@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import css from "./Pagination.module.css";
 
 interface PaginationProps {
-  totalItems: number; // Загальна кількість елементів
-  itemsPerPage: number; // Кількість елементів на сторінку
-  onPageChange: (page: number) => void; // Функція для зміни сторінки
+  totalItems: number; 
+  itemsPerPage: number;
+  onPageChange: (page: number) => void; 
 }
 
 const Pagination: React.FC<PaginationProps> = ({
@@ -39,17 +39,14 @@ const Pagination: React.FC<PaginationProps> = ({
   const getPageNumbers = () => {
     const pages: (string | number)[] = [];
 
-    // Перші 7 сторінок
     for (let i = 1; i <= Math.min(7, totalPages); i++) {
       pages.push(i);
     }
 
-    // Додавання "..." якщо є пропуски
     if (totalPages > 7) {
       if (currentPage > 5) {
         pages.push("...");
 
-        // Додаємо номер сторінки перед останньою
         if (currentPage < totalPages - 2) {
           pages.push(totalPages - 1);
         }

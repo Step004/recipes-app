@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 import { selectFilteredRecipes } from "../../redux/recipes/selectors";
 
 const AllRecipesPage: React.FC = () => {
-    const recipes = useSelector(selectFilteredRecipes);
+  const recipes = useSelector(selectFilteredRecipes);
 
   return (
     <main className={css.container}>
