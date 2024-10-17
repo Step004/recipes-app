@@ -1,23 +1,43 @@
+import { useState } from "react";
 import { useRecipes } from "../../services/hooks/useRecipes";
 import { Recipe } from "../../types/Recipe";
 import OneRecipe from "../OneRecipe/OneRecipe";
-import css from './RecipesList.module.css'
+import css from "./RecipesList.module.css";
+import Pagination from "../Pagination/Pagination";
+import { useDispatch } from "react-redux";
+import { fetchRecipesThunk } from "../../redux/recipes/operations";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import { selectFilteredRecipes } from "../../redux/recipes/selectors";
 
 export default function RecipesList() {
-  const { data: recipes, error, isLoading } = useRecipes(); // Додайте isLoading
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 6;
+  const recipes = useSelector(selectFilteredRecipes) || [];
+  const totalCount = recipes.length;
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchRecipesThunk());
+  }, [dispatch]);
 
-  if (isLoading) return <p>Loading...</p>; // Обробка стану завантаження
-  if (error) return <p>Error: {error.message}</p>; // Обробка помилок
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentRecipes = recipes.slice(indexOfFirstItem, indexOfLastItem);
 
   return (
     <div>
       <ul>
-        {recipes?.map((recipe: Recipe) => (
+        {currentRecipes?.map((recipe: Recipe) => (
           <li className={css.elList} key={recipe.idMeal}>
             <OneRecipe recipe={recipe} />
           </li>
         ))}
       </ul>
+      <Pagination
+        totalItems={totalCount} // Загальна кількість елементів
+        itemsPerPage={itemsPerPage}
+        onPageChange={setCurrentPage} // Функція для зміни сторінки
+      />
     </div>
   );
 }

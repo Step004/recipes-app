@@ -16,7 +16,6 @@ const OneRecipe: React.FC<OneRecipeProps> = ({ recipe }) => {
   const handleClickChoose = () => {
     setIsFavorite(!isFavorite);
   };
-  console.log(recipe);
 
   return (
     <div className={css.card}>
