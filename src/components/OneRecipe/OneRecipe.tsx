@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { Recipe } from "../../types/Recipe";
 import css from "./OneRecipe.module.css";
-import { MdOutlineFavorite, MdFavoriteBorder } from "react-icons/md";
 import { useState } from "react";
 
 interface OneRecipeProps {
